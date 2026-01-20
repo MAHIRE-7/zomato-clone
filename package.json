@@ -1,0 +1,12 @@
+{
+  "name": "zomato-clone-microservices",
+  "version": "1.0.0",
+  "description": "Zomato clone built with microservices architecture",
+  "scripts": {
+    "start": "docker-compose up",
+    "dev": "docker-compose up --build",
+    "stop": "docker-compose down"
+  },
+  "keywords": ["zomato", "microservices", "food-delivery"],
+  "author": "Developer"
+}
