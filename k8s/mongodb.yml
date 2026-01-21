@@ -21,7 +21,11 @@ spec:
         - containerPort: 27017
         env:
         - name: MONGO_INITDB_DATABASE
-          value: zomato_clone
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: MONGO_INITDB_DATABASE
+              
         resources:
           requests:
             memory: "512Mi"

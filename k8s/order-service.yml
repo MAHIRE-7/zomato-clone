@@ -20,7 +20,10 @@ spec:
         - containerPort: 3003
         env: 
         - name: MONGO_URL
-          value: mongodb://mongo-service:27017/zomato_clone
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: MONGO_URL
         resources:
           requests:
             memory: "128Mi"
