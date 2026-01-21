@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Register() {
@@ -9,6 +10,7 @@ function Register() {
     phone: '',
     address: ''
   });
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ function Register() {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       alert('Registration successful!');
+      navigate('/'); // Redirect to home page
     } catch (error) {
       alert('Registration failed: ' + error.response?.data?.error);
     }

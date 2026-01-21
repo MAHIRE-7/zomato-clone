@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: api-gateway-container 
-        image: manodayahire/zomato-api-gateway:v5
+        image: manodayahire/zomato-api-gateway:v7
         ports:
         - containerPort: 8000
         env:

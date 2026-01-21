@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: restaurant-service-container
-        image: manodayahire/zomato-restaurant-service:v1
+        image: manodayahire/zomato-restaurant-service:v3
         ports:
         - containerPort: 3002
         env:

@@ -16,11 +16,13 @@ const restaurantSchema = new mongoose.Schema({
   address: String,
   rating: { type: Number, default: 0 },
   deliveryTime: String,
+  image: String,
   menu: [{
     name: String,
     price: Number,
     description: String,
-    category: String
+    category: String,
+    image: String
   }]
 }, { timestamps: true });
 
@@ -52,6 +54,26 @@ app.post('/', async (req, res) => {
     const restaurant = new Restaurant(req.body);
     await restaurant.save();
     res.status(201).json(restaurant);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// Update restaurant
+app.put('/:id', async (req, res) => {
+  try {
+    const restaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(restaurant);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// Delete restaurant
+app.delete('/:id', async (req, res) => {
+  try {
+    await Restaurant.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Restaurant deleted successfully' });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

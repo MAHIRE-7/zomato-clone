@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
@@ -6,6 +7,7 @@ function Login() {
     email: '',
     password: ''
   });
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +16,7 @@ function Login() {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       alert('Login successful!');
+      navigate('/'); // Redirect to home page
     } catch (error) {
       alert('Login failed: ' + error.response?.data?.error);
     }

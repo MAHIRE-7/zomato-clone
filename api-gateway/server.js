@@ -55,9 +55,36 @@ app.get('/api/restaurants/:id', async (req, res) => {
   }
 });
 
+app.get('/api/restaurants/search/:query', async (req, res) => {
+  try {
+    const response = await axios.get(`http://restaurant-service:3002/search/${req.params.query}`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(error.response?.status || 500).json(error.response?.data || { error: 'Service unavailable' });
+  }
+});
+
 app.post('/api/restaurants', async (req, res) => {
   try {
     const response = await axios.post('http://restaurant-service:3002/', req.body);
+    res.json(response.data);
+  } catch (error) {
+    res.status(error.response?.status || 500).json(error.response?.data || { error: 'Service unavailable' });
+  }
+});
+
+app.put('/api/restaurants/:id', async (req, res) => {
+  try {
+    const response = await axios.put(`http://restaurant-service:3002/${req.params.id}`, req.body);
+    res.json(response.data);
+  } catch (error) {
+    res.status(error.response?.status || 500).json(error.response?.data || { error: 'Service unavailable' });
+  }
+});
+
+app.delete('/api/restaurants/:id', async (req, res) => {
+  try {
+    const response = await axios.delete(`http://restaurant-service:3002/${req.params.id}`);
     res.json(response.data);
   } catch (error) {
     res.status(error.response?.status || 500).json(error.response?.data || { error: 'Service unavailable' });
