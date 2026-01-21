@@ -33,17 +33,7 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "500m"
-        volumeMounts:
-        - name: mongo-storage
-          mountPath: /data/db
-  volumeClaimTemplates:
-  - metadata:
-      name: mongo-storage
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 1Gi
+       
 
 ---
 kind: Service
